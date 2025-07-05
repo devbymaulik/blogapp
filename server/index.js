@@ -14,7 +14,11 @@ app.use(upload());
 
 app.use(express.json());
 
-app.use(cors({ origin: `http://localhost:3000` }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://my-blog-0p8p.onrender.com",
+];
+app.use(cors({ origin: allowedOrigins }));
 
 app.use("/uploads", express.static(__dirname + "/uploads")); //location where user avatar is stored
 
