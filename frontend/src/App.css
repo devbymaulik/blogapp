@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');
+
+:root{
+  --color-primary: #6f6af8;
+  --color-white: #fff;
+  --color-red: rgb(255, 63, 63);
+  --color-gray-100: hs1(220, 20%, 10%, 5%);
+  --color-gray-200: hs1(220, 20%, 10%, 10%);
+  --color-gray-300: hs1(220, 20%, 10%, 25%);
+  --color-gray-500: hs1(220, 20%, 10%, 50%);
+  --color-gray-700: #252542;
+  --color-gray-900: #0c0c22;
+
+  --color-bg: hwb(240 95% 0%);
+
+  --transition: all 300ms ease;
+
+  --container-width-lg: 84%;
+  --container-width-md: 92%;
+  --form_width: 50%;
+
+  --radius-1: 0.3rem;
+  --radius-2: 0.6rem;
+  --radius-3: 1rem;
+  --radius-4: 2rem;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: "Poppins", sans-serif ;
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  color: var(--color-gray-700);
+}
+.header_section a
+{
+  font-size: 20px;
+}
+
+.nav-animated {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-animated::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #0d6efd; /* Bootstrap primary */
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-animated:hover {
+  color: #0d6efd !important;
+  transform: translateY(-2px);
+}
+
+.nav-animated:hover::after {
+  width: 100%;
+}
+
+.post-content p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.post-content a {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 0.5rem;
+}
+/* Optional: ensure description doesn't overflow */
+.post-description {
+  max-height: 80px;
+  overflow: hidden;
+}
+.hero-section {
+  background: #f8f9fa;
+  padding: 4rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+.btn-group-lg .btn {
+  min-width: 160px;
+  font-weight: 500;
+}
+.card-empty-state {
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+}
