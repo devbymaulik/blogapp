@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
-import ru from "javascript-time-ago/locale/ru.json";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCommentAction,
@@ -14,12 +11,7 @@ import {
   //deletePostAction, // ✅ Import delete action
 } from "./redux/dispatcher";
 import { getUserAction } from "../../postAuthor/redux/dispatcher";
-
-TimeAgo.addDefaultLocale(en);
-TimeAgo.addLocale(ru);
-
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
-
 export default function PostDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

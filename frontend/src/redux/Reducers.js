@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import registerReducer from "../components/signup/redux/reducer";
 import loginReducer from "../components/signin/redux/reducer";
 import {
+  getAuthorReducer,
   getUseReducer,
   updateProfileReducer,
 } from "../components/postAuthor/redux/reducer";
@@ -18,6 +19,7 @@ const appReducer = combineReducers({
   getPostDetailsReducer: getPostDetailsReducer,
   createPostReducer: createPostReducer,
   postsReducer: postsReducer,
+  authors: getAuthorReducer,
 });
 const rootReducer = (state, action) => {
   return appReducer(state, action);

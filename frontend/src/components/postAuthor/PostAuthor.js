@@ -1,28 +1,17 @@
 import React, { useEffect } from "react";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
-import ru from "javascript-time-ago/locale/ru.json";
 import ReactTimeAgo from "react-time-ago";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserAction } from "./redux/dispatcher";
-
+import { getAuthorAction } from "./redux/dispatcher";
 const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL || "http://localhost:5000/";
-
-// Load locales once globally
-TimeAgo.addDefaultLocale(en);
-TimeAgo.addLocale(ru);
-
 export default function PostAuthor({ createdAt, authorId }) {
   const dispatch = useDispatch();
-  const { data = {} } = useSelector((state) => state.getUseReducer);
-
+  const { data = {} } = useSelector((state) => state.authors);
   const author = data[authorId];
-
   useEffect(() => {
     if (authorId && !author) {
-      dispatch(getUserAction(authorId)); // Fetch only if not already in cache
+      dispatch(getAuthorAction(authorId));
     }
   }, [authorId, author, dispatch]);
 

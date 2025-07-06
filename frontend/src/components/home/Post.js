@@ -21,7 +21,7 @@ export default function Post() {
   return (
     <>
       {/* Filter Buttons */}
-      {userID ? (
+      {userID && (
         <div className="text-center mb-5">
           <div
             className="btn-group btn-group-lg shadow rounded-pill"
@@ -41,22 +41,26 @@ export default function Post() {
                 showMyPosts ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setShowMyPosts(true)}
-              disabled={!userID}
             >
               <i className="fas fa-user me-2"></i> My Posts
             </button>
           </div>
         </div>
-      ) : (
-        ""
       )}
 
       {/* Posts Display */}
       {posts.length > 0 ? (
         <div className="row g-4">
           {posts.map((post) => (
-            <div className="col-sm-6 col-md-4 col-lg-3" key={post?._id}>
-              <PostItem post={post} />
+            <div
+              className="col-sm-6 col-md-4 col-lg-3 d-flex" // Ensures all columns are equal height
+              key={post?._id}
+            >
+              <div className="w-100 h-100">
+                {" "}
+                {/* Makes PostItem stretch fully */}
+                <PostItem post={post} />
+              </div>
             </div>
           ))}
         </div>

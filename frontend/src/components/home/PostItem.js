@@ -18,7 +18,7 @@ export default function PostItem({ post }) {
 
   return (
     <motion.article
-      className="card h-100 border-0 post-item"
+      className="card h-100 d-flex flex-column border-0 post-item"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03 }}
@@ -27,34 +27,41 @@ export default function PostItem({ post }) {
     >
       <Link
         to={`/post/getPostDetails/${post._id}`}
-        className="text-decoration-none text-dark"
+        className="text-decoration-none text-dark d-flex flex-column h-100"
       >
         {post?.thumbnail && (
           <img
             src={post.thumbnail}
             alt={post.title}
             className="card-img-top rounded-top"
-            style={{ objectFit: "cover", height: "220px" }}
+            style={{ objectFit: "cover", height: "200px" }}
           />
         )}
 
-        <div className="card-body">
+        {/* Body */}
+        <div className="card-body d-flex flex-column">
           <h5 className="card-title fw-bold mb-2">{shortTitle}</h5>
 
-          {/* Category badge under title */}
+          {/* Category badge */}
           <span className="badge bg-light text-primary border border-primary text-capitalize mb-2 px-3 py-1">
             {post?.category}
           </span>
 
+          {/* Short description */}
           <p
-            className="card-text text-muted small mb-3"
+            className="card-text text-muted small mb-3 flex-grow-1"
             dangerouslySetInnerHTML={{ __html: shortDescription }}
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
           ></p>
 
-          {/* Author and metrics */}
-          <div className="d-flex justify-content-between align-items-center flex-wrap">
+          {/* Author & Metrics Footer */}
+          <div className="mt-auto d-flex justify-content-between align-items-center pt-2 border-top ">
             <PostAuthor createdAt={post?.createdAt} authorId={post?.creator} />
-
             <div className="d-flex align-items-center gap-3">
               <small
                 className="d-flex align-items-center text-muted"

@@ -2,6 +2,9 @@
 import apiEndPoints from "../../../utils/apiList";
 import { serverCall } from "../../../utils/serverCall";
 import {
+  fetchAuthorFailure,
+  fetchAuthorRequest,
+  fetchAuthorSuccess,
   fetchUserFailure,
   fetchUserRequest,
   fetchUserSuccess,
@@ -28,6 +31,28 @@ export const getUserAction = (userId) => {
     } catch (error) {
       toast.error(error.message || "Request failed");
       dispatch(fetchUserFailure(error.message || "Request failed"));
+    }
+  };
+};
+// ✅ Async Action to Fetch User by ID
+export const getAuthorAction = (userId) => {
+  return async (dispatch) => {
+    dispatch(fetchAuthorRequest());
+    try {
+      const url = `${apiEndPoints.GET_USER}/${userId}`;
+      const result = await serverCall(url, "GET", "");
+
+      if (result.success === true) {
+        dispatch(fetchAuthorSuccess(result.data));
+      } else {
+        toast.error(result?.message || "Unknown error occurred");
+        dispatch(
+          fetchAuthorFailure(result?.message || "Unknown error occurred")
+        );
+      }
+    } catch (error) {
+      toast.error(error.message || "Request failed");
+      dispatch(fetchAuthorFailure(error.message || "Request failed"));
     }
   };
 };
